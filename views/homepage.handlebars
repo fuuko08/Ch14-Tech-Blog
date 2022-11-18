@@ -1,0 +1,14 @@
+{{#each posts}}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Post by
+                {{user.username}}
+                on
+                {{createAt}}
+            </h6>
+            <p class="card-text">{{content}}</p>
+            <a href="/post/{{id}}" class="card-link"> Post Link </a>
+        </div>
+    </div>
+{{/each}}
