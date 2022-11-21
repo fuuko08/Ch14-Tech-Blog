@@ -17,14 +17,14 @@ User.init(
             autoIncrement: true
         },
         username: {
-            type: Datatypes.STRING,
+            type: Datatypes.STRING(20),
             allowNull: false
         },
         password: {
-            type: Datatypes.STRING,
+            type: Datatypes.STRING(20),
             allowNull: false,
             validate: {
-                len: [4]
+                len: [8]
             }
         }
     },

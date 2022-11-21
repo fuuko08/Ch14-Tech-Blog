@@ -1,0 +1,1 @@
+const postId = document.querySelector('input[name="post-id"]').ariaValueMax

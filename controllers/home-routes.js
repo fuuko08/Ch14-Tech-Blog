@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { Post, User } = require('../models')
+const { Post, User, Comment } = require('../models');
+const withAuth = require('../utils/auth');
 
 // TODO get all posts
 router.get('/', async (req, res) => {
@@ -9,28 +10,56 @@ router.get('/', async (req, res) => {
             include: [User]
         })
         // Serialize data retrieved
-        const posts = dbPostData.map(post => post.get({ plain: true }))
+        const posts = dbPostData.map((post) => post.get({ plain: true }));
         console.log(posts)
         // Respond with template to render along with date retrieved
-        res.render('homepage', { posts })
+        res.render('homepage', { posts, loggedIn: req.session.loggedIn });
     } catch (err) {
         res.status(500).json(err)
     }
-})
+});
 
 // TODO get one post
-router.get('/post/:id', async (req, res) => {
-    res.send(`Render 1 post with id ${req.params.id}`)
-})
+router.get('/post/:id', withAuth, async (req, res) => {
+    try{
+        const dbPostData = await Post.findOne({
+            where: {id: req.params.id},
+            include: [
+                User, 
+                {
+                    model: Comment,
+                    include: [User],
+                },
+            ],
+        });
+        if (dbPostData) {
+            const posts = dbPostData.get({ plain: true });
+            console.log(posts);
+            res.render('Render 1 post', { posts, loggedIn: req.session.loggedIn })  
+        } else {
+            res.status(404).end();
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }   
+});
 
 //TODO login
-router.get('/login', async (req, res) => {
-    res.send('Render login view.')
-})
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/dashboard');
+        return;
+    }
+    res.render('Render login view.');
+});
 
 //TODO signup
-router.get('/signup', async (req, res) => {
-    res.send('Render signup view.');
-})
+router.get('/signup', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/dashboard');
+        return;
+    }
+    res.render('Render signup view.');
+});
 
-module.exports = router
+module.exports = router;
