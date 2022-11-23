@@ -9,7 +9,7 @@ router.get('/', withAuth, async (req, res) => {
         });
         const comments = dbCommentData.map((comment) => comment.get({ plain: true }));
         console.log(comments);
-        res.render('single-post', {comments, loggedIn: req.session.loggedIn});
+        res.render('onepost', {comments, loggedIn: req.session.loggedIn});
     } catch (err) {
         res.status(500).json(err);
     }

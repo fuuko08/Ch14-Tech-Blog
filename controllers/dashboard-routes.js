@@ -11,7 +11,7 @@ router.get('/', withAuth, async (req, res) => {
         });
         const posts = dbPostData.map((post) => post.get({ plain: true }));
     console.log(posts);
-        res.render('all-posts', {
+        res.render('allpost', {
             layout: 'dashboard',
             posts,
         });
@@ -22,19 +22,19 @@ router.get('/', withAuth, async (req, res) => {
 
 //Click on "New Post" button
 router.get('/new', withAuth, (req, res) => {
-    res.render('new-post', {
+    res.render('newpost', {
         layout: 'dashboard',
     });
 });
 
-//Click on the Post
+//Click on the Post to edit it
 router.get('/edit/:id', withAuth, async (req, res) => {
     try {
         const dbPostData = await Post.findByPk(req.params.id);
         if (dbPostData) {
             const post = dbPostData.get({ plain: true });
             console.log(post);
-            res.render('edit-post', {
+            res.render('editpost', {
                 layout: 'dashboard',
                 post,
             });

@@ -35,7 +35,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
         if (dbPostData) {
             const posts = dbPostData.get({ plain: true });
             console.log(posts);
-            res.render('Render 1 post', { posts, loggedIn: req.session.loggedIn })  
+            res.render('onepost', { posts, loggedIn: req.session.loggedIn })  
         } else {
             res.status(404).end();
         }
@@ -50,7 +50,7 @@ router.get('/login', (req, res) => {
         res.redirect('/dashboard');
         return;
     }
-    res.render('Render login view.');
+    res.render('login');
 });
 
 //TODO signup
@@ -59,7 +59,7 @@ router.get('/signup', (req, res) => {
         res.redirect('/dashboard');
         return;
     }
-    res.render('Render signup view.');
+    res.render('signup');
 });
 
 module.exports = router;

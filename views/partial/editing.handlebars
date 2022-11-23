@@ -1,0 +1,9 @@
+<!-- use in allpost.handlebars -->
+<div class="card-body">
+    <a href="dashboard/edit/{{id}}">
+        <div class="card-header flex-row justify-space-between">
+            <div class="col-8">Title: {{post.title}}</div>
+            <div class="col-4">posted by {{user.username}} on {{format_date post.date}}</div>
+        </div>
+    </a>
+</div>

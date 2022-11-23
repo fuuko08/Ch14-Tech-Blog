@@ -1,0 +1,24 @@
+<div class="card">
+    <h2 class="card-header">Add New Post</h2>
+
+    <form class="card-body newpost-form">
+
+      <input type="hidden" name="post-id" value="{{post.id}}"/>
+
+      <div class="form-group">
+        <label class="form-label">Title:</label>
+        <input type="text" class="form-input" name="post-title"/>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Content:</label>
+        <textarea class="form-textarea form-input" name="post-body"></textarea>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create</button>
+      </div>
+
+    </form>
+</div>
+<script src="/public/js/newpost.js"></script>
