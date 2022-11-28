@@ -12,22 +12,16 @@ class Post extends Model {}
                 autoIncrement: true,
             },
             title: {
-                type: DataTypes.STRING(20),
-                allowNull: false,
-                unique: true,
-            },
-            content: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                unique: true,
             },
-            date: {
-                type: DataTypes.DATEONLY,
+            content: {
+                type: DataTypes.TEXT,
                 allowNull: false,
-                defaultValue: DataTypes.NOW,
             },
             userId: {
                 type: DataTypes.INTEGER,
+                allowNull: false,
                 references: {
                     model: 'user',
                     key: 'id',
@@ -36,7 +30,7 @@ class Post extends Model {}
         },
         {
             sequelize,
-            timestamps: false,
+            // timestamps: true,
             freezeTableName: true,
             underscored: true,
             modelName: 'post',

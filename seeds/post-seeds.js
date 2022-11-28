@@ -8,4 +8,7 @@ const postData = [
     },
 ]
 
-const postSeed = () => Post.bulkCreate(postData);
+const postSeed = () => Post.bulkCreate(postData, {
+    individualHooks: true,
+    returning: true,
+});

@@ -14,15 +14,10 @@ class Comment extends Model {}
             content: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                unique: true,
-            },
-            date: {
-                type: DataTypes.DATEONLY,
-                allowNull: false,
-                defaultValue: DataTypes.NOW,
             },
             userId: {
                 type: DataTypes.INTEGER,
+                allowNull: false,
                 references: {
                     model: 'user',
                     key: 'id',
@@ -30,6 +25,7 @@ class Comment extends Model {}
             },
             postId: {
                 type: DataTypes.INTEGER,
+                allowNull: false,
                 references: {
                     model: 'post',
                     key: 'id',
@@ -38,7 +34,7 @@ class Comment extends Model {}
         },
         {
             sequelize,
-            timestamps: false,
+            // timestamps: true,
             freezeTableName: true,
             underscored: true,
             modelName: 'comment',
