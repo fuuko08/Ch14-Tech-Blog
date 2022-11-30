@@ -10,7 +10,7 @@ const sequelize = process.env.JAWSDB_URL
         port: 3306,
         database: 'tech_blog_db',
         username: 'root',
-        password: 'missing3013',
+        password: 'new-strong-password',
     });
 
 module.exports = sequelize;

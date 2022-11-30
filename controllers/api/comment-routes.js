@@ -52,7 +52,7 @@ router.put('/:id', withAuth, async (req, res) => {
     try {
       const updatedComment = await Comment.update(
         {
-          comment_text: req.body.comment_text,
+          content: req.body.content,
         },
         {
           where: {
@@ -81,7 +81,7 @@ router.delete('/:id', withAuth, async (req, res) => {
     });
     if (!dbCommentData) {
       res.status(404).json({
-        message: `No post owned by user_id = ${req.session.user_id} found with id = ${req.params.id}`,
+        message: `No post owned by user id = ${req.session.userId} found with id = ${req.params.id}`,
       });
       return;
     }

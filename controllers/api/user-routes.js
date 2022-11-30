@@ -49,7 +49,6 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        console.log(`username: {0} - password: {1}`, req.body.username, req.body.password);
         const dbUserData = await User.create(req.body);
         console.table(req.body);
         req.session.save(() => {
