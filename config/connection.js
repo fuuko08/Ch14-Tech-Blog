@@ -8,9 +8,6 @@ const sequelize = process.env.JAWSDB_URL
         host: 'localhost',
         dialect: 'mysql',
         port: 3306,
-        database: 'tech_blog_db',
-        username: 'root',
-        password: 'new-strong-password',
     });
 
 module.exports = sequelize;
